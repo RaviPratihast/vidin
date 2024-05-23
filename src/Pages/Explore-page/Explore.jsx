@@ -1,7 +1,18 @@
 import React from "react";
+import { useVideo } from "../../Context/Video-Context/VideoContext";
+import { VideoCard } from "../../component/index-component";
 
 const Explore = () => {
-  return <div>Explore</div>;
+  const { state } = useVideo();
+  return (
+    <div className="min-h-screen p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {state.initialVideo.map((video) => (
+          <VideoCard key={video.id} video={video} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export { Explore };
