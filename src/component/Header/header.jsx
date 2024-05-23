@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../index-component";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,13 +28,21 @@ const Header = () => {
           </svg>
         </Button>
 
-        <span className="text-2xl font-bold">vidIn</span>
+        <NavLink to="/explore">
+          <span className="text-2xl font-bold">vidIn</span>
+        </NavLink>
+        {/* <span className="text-2xl font-bold">vidIn</span> */}
         <div className="hidden lg:flex ml-11 mt-1">
           <ul className="flex gap-6">
-            <li className="text-lg cursor-pointer">Watch Later</li>
-            <li className="text-lg cursor-pointer">Liked</li>
-            <li className="text-lg cursor-pointer">History</li>
-            <li className="text-lg cursor-pointer">Playlist</li>
+            {/* <li className="text-lg cursor-pointer">Watch Later</li> */}
+
+            {/* <li className="text-lg cursor-pointer">Liked</li> */}
+            {/* <li className="text-lg cursor-pointer">History</li> */}
+            {/* <li className="text-lg cursor-pointer">Playlist</li> */}
+            <NavLink to="/watchLater">WatchLater</NavLink>
+            <NavLink to="/liked">Liked</NavLink>
+            <NavLink to="/history">History</NavLink>
+            <NavLink to="/playlistPage">playlist</NavLink>
           </ul>
         </div>
       </div>
