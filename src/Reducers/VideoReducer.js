@@ -1,4 +1,5 @@
 function VideoReducer(state, action) {
+  // console.log(action.payload, "action.payload");
   switch (action.type) {
     case "ADD_TO_LIKED":
       if (
@@ -37,6 +38,11 @@ function VideoReducer(state, action) {
         watchLater: state.watchLater.filter(
           (watchLaterVideo) => watchLaterVideo.id !== action.payload.id
         ),
+      };
+    case "CLEAR_WATCH_LATER":
+      return {
+        ...state,
+        watchLater: [],
       };
     case "CREATE_PLAYLIST":
       return {
