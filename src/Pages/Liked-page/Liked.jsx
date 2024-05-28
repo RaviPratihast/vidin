@@ -35,12 +35,14 @@ const Liked = () => {
           <h3 className="text-2xl font-semibold">
             Liked Videos: {state.liked.length}
           </h3>
-          <button
-            onClick={handleDeleteAll}
-            className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
-          >
-            Delete All Videos
-          </button>
+          {state.liked.length > 0 && (
+            <Button
+              onClick={handleDeleteAll}
+              className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
+            >
+              Delete All Videos
+            </Button>
+          )}
         </div>
 
         {state.liked.length > 0 ? (
