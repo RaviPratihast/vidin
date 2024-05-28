@@ -1,16 +1,19 @@
 import React from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useVideo } from "../../Context/Video-Context/VideoContext";
 import { VideoLibrary } from "../../component/VideoLibrary/VideoLibrary";
 import { checkingWatchLater } from "../../Utilities/checkingWatchLater";
 import { Button } from "../../component/Button/Button";
 import { youLikeIt } from "../../Utilities/youLikeIt";
+import ShareIcon from "@mui/icons-material/Share";
 
 function VideoDetails() {
   const { videoId } = useParams();
   const { state, dispatch } = useVideo();
   const video = state.initialVideo.find((video) => video.id === videoId);
+  const navigate = useNavigate();
 
   if (!video) {
     return <div>Video not found</div>;
@@ -20,6 +23,17 @@ function VideoDetails() {
   // console.log(isVideoPresentInWatchLater);
   const isVideoLiked = youLikeIt(state, video);
 
+  function handleShare() {
+    const url = window.location.href;
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        toast.success("Link Copied To Clipboard");
+      })
+      .catch((error) => {
+        toast.error("Error Copying The Link");
+      });
+  }
   return (
     <div className="flex flex-col justify-center items-center w-full max-w-screen-lg mx-auto mt-20 px-4 sm:px-6 lg:px-8">
       <div className="w-full mt-10">
@@ -86,9 +100,12 @@ function VideoDetails() {
             >
               Watch Later
             </Button>
-            <button className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none">
-              Share
-            </button>
+            <Button
+              className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
+              onClick={() => handleShare()}
+            >
+              <ShareIcon />
+            </Button>
             <button className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none">
               Add to Playlist
             </button>
