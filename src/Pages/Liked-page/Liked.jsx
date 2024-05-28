@@ -12,12 +12,14 @@ import React from "react";
 import { useVideo } from "../../Context/Video-Context/VideoContext";
 import { VideoCard, Button } from "../../component/index-component";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; //
 const Liked = () => {
   const { state, dispatch } = useVideo();
 
   const handleDeleteAll = () => {
     dispatch({ type: "CLEAR_LIKED" });
+    toast.success(" All videos Removed from Liked");
   };
 
   const handleDeleteVideo = (video) => {
@@ -25,7 +27,7 @@ const Liked = () => {
       type: "REMOVE_FROM_LIKED",
       payload: video,
     });
-    console.log("hello");
+    toast.success("Removed from Liked");
   };
 
   return (
