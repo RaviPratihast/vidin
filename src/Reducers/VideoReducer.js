@@ -19,6 +19,11 @@ function VideoReducer(state, action) {
           (likedVideo) => likedVideo.id !== action.payload.id
         ),
       };
+    case "CLEAR_LIKED":
+      return {
+        ...state,
+        liked: [],
+      };
     case "ADD_TO_WATCH_LATER":
       if (
         state.watchLater.some(
