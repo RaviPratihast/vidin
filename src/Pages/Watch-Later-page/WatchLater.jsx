@@ -2,23 +2,22 @@ import React from "react";
 import { useVideo } from "../../Context/Video-Context/VideoContext";
 import { VideoCard, Button } from "../../component/index-component";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const WatchLater = () => {
   const { state, dispatch } = useVideo();
 
   const handleDeleteAll = () => {
     dispatch({ type: "CLEAR_WATCH_LATER" });
+    toast.success("All videos Removed from Watch Later");
   };
 
   const handleDeleteVideo = (video) => {
-    // dispatch({
-    //   type: "REMOVE_FROM_WATCH_LATER",
-    //   payload: { videoId },
-    // });
     dispatch({
       type: "REMOVE_FROM_WATCH_LATER",
       payload: video,
     });
+    toast.success("Removed from Watch Later");
   };
 
   return (
