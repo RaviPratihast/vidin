@@ -76,12 +76,33 @@ function VideoReducer(state, action) {
             : playlist
         ),
       };
-    case "REMOVE_FROM_PLAYLIST":
-      const { playlistName, videoId } = action.payload;
+
+    // case "REMOVE_VIDEO_FROM_PLAYLIST":
+    //   const
+    // case "REMOVE_FROM_PLAYLIST":
+    //   const { playlistName, videoId } = action.payload;
+    //   const updatedPlaylists = state.playlists.map((playlist) => {
+    //     if (playlist.playlistName === playlistName) {
+    //       const updatedVideos = playlist.videos.filter(
+    //         (video) => video.id !== videoId
+    //       );
+    //       return {
+    //         ...playlist,
+    //         videos: updatedVideos,
+    //       };
+    //     }
+    //     return playlist;
+    //   });
+    //   return {
+    //     ...state,
+    //     playlists: updatedPlaylists,
+    //   };
+    case "REMOVE_VIDEO_FROM_PLAYLIST":
+      const { playlistId, video } = action.payload;
       const updatedPlaylists = state.playlists.map((playlist) => {
-        if (playlist.playlistName === playlistName) {
+        if (playlist.id === playlistId) {
           const updatedVideos = playlist.videos.filter(
-            (video) => video.id !== videoId
+            (PlaylistVideo) => PlaylistVideo.id !== video.id
           );
           return {
             ...playlist,
@@ -94,12 +115,26 @@ function VideoReducer(state, action) {
         ...state,
         playlists: updatedPlaylists,
       };
+    case "CLEAR_VIDEOS_FROM_PLAYLIST":
+      return {
+        ...state,
+        playlists: state.playlists.map((playlist) =>
+          playlist.id === action.payload.playlistId
+            ? { ...playlist, videos: [] }
+            : playlist
+        ),
+      };
     case "REMOVE_PLAYLIST":
       return {
         ...state,
         playlists: state.playlists.filter(
           (playlist) => playlist.id !== action.payload
         ),
+      };
+    case "CLEAR_PLAYLISTS":
+      return {
+        ...state,
+        playlists: [],
       };
     case "ADD_TO_HISTORY":
       return {
