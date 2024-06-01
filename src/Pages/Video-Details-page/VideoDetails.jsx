@@ -152,7 +152,34 @@ function VideoDetails() {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div className=" flex  flex-col w-68 h-60 border rounded bg-white border-slate-400 shadow-lg overflow-y-auto scrollbar scrollbar-thumb-blue-500 scrollbar-track-gray-200 scrollbar-thin">
+        {state.playlists.length > 0 && (
+          <>
+            <h2 className="text-gray-700 mb-2">Add to Playlist</h2>
+            <div className=" flex  flex-col w-68 h-60  border border-gray-700 rounded overflow-y-auto scrollbar scrollbar-thumb-blue-500 scrollbar-track-gray-200 scrollbar-thin">
+              {state.playlists.map((playlist) => {
+                const isVideoPresent = playlist.videos.some(
+                  (video) => video.id === videoId
+                );
+                return (
+                  <div key={playlist.id}>
+                    <label className="flex gap-1 justify-start items-center ml-2 h-6">
+                      <input
+                        type="checkbox"
+                        className="cursor-pointer"
+                        checked={isVideoPresent}
+                        onChange={(event) => {
+                          checkboxHandler(event, playlist);
+                        }}
+                      />
+                      {playlist.playlistName}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
+        {/* <div className=" flex  flex-col w-68 h-60 border rounded bg-white border-red-400 shadow-lg overflow-y-auto scrollbar scrollbar-thumb-blue-500 scrollbar-track-gray-200 scrollbar-thin">
           {state.playlists.map((playlist) => {
             const isVideoPresent = playlist.videos.some(
               (video) => video.id === videoId
@@ -173,7 +200,8 @@ function VideoDetails() {
               </div>
             );
           })}
-        </div>
+        </div>  */}
+
         <div className="flex flex-col">
           <label className="text-gray-700 mb-2">Create Playlist</label>
           <input
