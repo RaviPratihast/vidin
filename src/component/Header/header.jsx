@@ -83,7 +83,7 @@ const Header = () => {
     dispatch({ type: "SEARCH_VIDEOS", payload: value });
 
     // Navigate to explore page
-    // navigate("/explore");
+    navigate("/explore");
   };
 
   return (
