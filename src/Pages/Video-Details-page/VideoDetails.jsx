@@ -1,13 +1,11 @@
-// VideoDetails.js
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { useVideo } from "../../Context/Video-Context/VideoContext";
 import { useAuth } from "../../Context/Auth-Context/auth-context";
-import { VideoLibrary } from "../../component/VideoLibrary/VideoLibrary";
 import { checkingWatchLater } from "../../Utilities/checkingWatchLater";
-import { Button, Modal } from "../../component/index-component";
+import { Button, Modal, VideoLibrary } from "../../component/index-component";
 
 import { youLikeIt } from "../../Utilities/youLikeIt";
 import ShareIcon from "@mui/icons-material/Share";
@@ -15,11 +13,11 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 function VideoDetails() {
   const { videoId } = useParams();
-  const { stateAuth, dispatchAuth } = useAuth();
+  const { stateAuth } = useAuth();
   const { state, dispatch } = useVideo();
   const navigate = useNavigate();
   const video = state.initialVideo.find((video) => video.id === videoId);
-  // const navigate = useNavigate();
+
   const [playlistName, setPlaylistName] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -188,28 +186,7 @@ function VideoDetails() {
             </div>
           </>
         )}
-        {/* <div className=" flex  flex-col w-68 h-60 border rounded bg-white border-red-400 shadow-lg overflow-y-auto scrollbar scrollbar-thumb-blue-500 scrollbar-track-gray-200 scrollbar-thin">
-          {state.playlists.map((playlist) => {
-            const isVideoPresent = playlist.videos.some(
-              (video) => video.id === videoId
-            );
-            return (
-              <div key={playlist.id}>
-                <label className="flex gap-1 justify-start items-center ml-2 h-6">
-                  <input
-                    type="checkbox"
-                    className="cursor-pointer"
-                    checked={isVideoPresent}
-                    onChange={(event) => {
-                      checkboxHandler(event, playlist);
-                    }}
-                  />
-                  {playlist.playlistName}
-                </label>
-              </div>
-            );
-          })}
-        </div>  */}
+        
 
         <div className="flex flex-col">
           <label className="text-gray-700 mb-2">Create Playlist</label>
