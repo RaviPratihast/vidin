@@ -157,13 +157,24 @@ function VideoReducer(state, action) {
         ...state,
         history: [],
       };
-    case "SEARCH_VIDEO":
+
+    case "SEARCH_VIDEOS":
+      const searchTerm = action.payload.trim().toLowerCase();
+      const filteredVideos = state.originalData.filter((video) => {
+        const title = video.title.trim().toLowerCase();
+        return title.includes(searchTerm);
+      });
       return {
         ...state,
-        initialVideo: state.originalData.filter((video) =>
-          video.title.toLowerCase().includes(action.payload.toLowerCase())
-        ),
+        filteredVideos: searchTerm ? filteredVideos : state.originalData,
       };
+    // case "SEARCH_VIDEO":
+    //   return {
+    //     ...state,
+    //     initialVideo: state.originalData.filter((video) =>
+    //       video.title.toLowerCase().includes(action.payload.toLowerCase())
+    //     ),
+    //   };
     // case "SET_DEFAULT_VALUE_OF_VIDEOS":
     //   return {
     //     ...state,

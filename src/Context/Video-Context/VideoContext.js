@@ -12,6 +12,7 @@ let initialState = {
   watchLater: [],
   playlists: [],
   history: [],
+  filteredVideos: videos,
 };
 
 const VideoProvider = ({ children }) => {

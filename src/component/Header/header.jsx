@@ -67,10 +67,24 @@
 
 import React, { useState } from "react";
 import { Button } from "../index-component";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useVideo } from "../../Context/Video-Context/VideoContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { dispatch } = useVideo();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    // console.log("searchTerm", searchTerm);
+    dispatch({ type: "SEARCH_VIDEOS", payload: value });
+
+    // Navigate to explore page
+    // navigate("/explore");
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full bg-gray-800 text-white p-4 flex items-center justify-between z-10">
@@ -120,9 +134,13 @@ const Header = () => {
           </ul>
         </div>
       </div>
+
+      {/* search bar */}
       <div className="hidden md:flex items-center justify-center">
         <input
           type="text"
+          value={searchTerm}
+          onChange={handleSearch}
           placeholder="Search..."
           className="p-2 rounded bg-gray-700 text-white w-96 focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
