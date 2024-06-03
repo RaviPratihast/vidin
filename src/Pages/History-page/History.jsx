@@ -27,10 +27,7 @@ const History = () => {
     <div className="min-h-screen bg-gray-100 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-4">
-          {/* <h3 className="text-2xl font-semibold">
-            History: {state.history.length}
-          </h3> */}
-
+        
           <div className="shadow-lg h-20 sm:h-24 w-full sm:w-60 flex flex-col justify-center items-center border border-gray-700 rounded-md mb-4 sm:mb-8">
             <h3 className="text-gray-700 text-center">
               History: {state.history.length}
@@ -61,9 +58,7 @@ const History = () => {
             ))}
           </div>
         ) : (
-          // <div className="mt-20 flex justify-center text-gray-600">
-          //   <p>No videos in history.</p>
-          // </div>
+         
           <div className="flex justify-center items-center w-full px-4 sm:px-6 lg:px-8">
             <div className="border shadow-lg h-auto sm:h-60 w-full max-w-md p-8 sm:p-20 flex flex-col justify-center items-center gap-4 sm:gap-2 rounded-md border-gray-700">
               <h2 className="text-lg text-gray-700 text-center">

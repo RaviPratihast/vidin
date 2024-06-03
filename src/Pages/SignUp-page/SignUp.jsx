@@ -13,7 +13,6 @@ function SignUp() {
 
   function handleLogin() {
     navigate("/login");
-    // setSignedIn((prev) => !prev);
   }
 
   function handleSignIn() {
@@ -99,20 +98,7 @@ function SignUp() {
         ) : (
           <>
             <div className="flex justify-center mt-20">
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#3b82f6"
-                className="w-14 h-14"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg> */}
+          
             </div>
             <div className="flex flex-col gap-3 justify-center items-center w-full mt-5">
               <h1 className="font-semibold text-lg">Thanks for Signing Up!</h1>

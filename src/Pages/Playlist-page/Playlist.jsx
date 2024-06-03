@@ -9,10 +9,6 @@ function Playlist() {
   const navigate = useNavigate();
   const { state, dispatch } = useVideo();
 
-  function handleClick() {
-    navigate("/explore");
-  }
-
   function handleDeleteAll() {
     dispatch({ type: "CLEAR_PLAYLISTS" });
     toast.success("All Playlists Removed");
@@ -21,7 +17,6 @@ function Playlist() {
   return (
     <div className="min-h-screen bg-gray-100 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* playlist length: items are there in the page */}
         <div className="shadow-lg h-20 sm:h-24 w-full sm:w-60 flex flex-col justify-center items-center border border-gray-700 rounded-md mb-4 sm:mb-8">
           <h3 className="text-gray-700 text-center">
             Playlists: {state.playlists.length}
@@ -71,9 +66,7 @@ function Playlist() {
                             "default-thumbnail.jpg"
                           })`,
                         }}
-                      >
-                        {/* Placeholder for the faded thumbnail */}
-                      </div>
+                      ></div>
                     </Link>
                   </div>
                   <div className="flex justify-between items-center p-2 bg-gray-700 text-white">

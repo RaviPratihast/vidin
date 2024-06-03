@@ -1,13 +1,3 @@
-// import React from "react";
-// import { useVideo } from "../../Context/Video-Context/VideoContext";
-
-// const Liked = () => {
-//   const { state, dispatch } = useVideo();
-//   return <div>{console.log(state.liked)}</div>;
-// };
-
-// export { Liked };
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useVideo } from "../../Context/Video-Context/VideoContext";
