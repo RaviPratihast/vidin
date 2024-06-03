@@ -34,7 +34,7 @@ const WatchLater = () => {
           {state.watchLater.length !== 0 && (
             <Button
               onClick={() => handleDeleteAll()}
-              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 focus:outline-none"
+              className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
             >
               Delete All Videos
             </Button>

@@ -32,7 +32,7 @@ function Playlist() {
           <div className="flex justify-center items-center w-full px-4 sm:px-6 lg:px-8">
             <div className="border shadow-lg h-auto sm:h-60 w-full max-w-md p-8 sm:p-20 flex flex-col justify-center items-center gap-4 sm:gap-2 rounded-md border-gray-700">
               <h2 className="text-lg text-gray-700 text-center">
-                Your playlist is empty.
+                Your don't have any playlist.
               </h2>
               <Button
                 onClick={() => navigate("/explore")}
