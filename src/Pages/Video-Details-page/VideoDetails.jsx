@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { useVideo } from "../../Context/Video-Context/VideoContext";
+import { useAuth } from "../../Context/Auth-Context/auth-context";
 import { VideoLibrary } from "../../component/VideoLibrary/VideoLibrary";
 import { checkingWatchLater } from "../../Utilities/checkingWatchLater";
 import { Button, Modal } from "../../component/index-component";
@@ -14,7 +15,9 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 function VideoDetails() {
   const { videoId } = useParams();
+  const { stateAuth, dispatchAuth } = useAuth();
   const { state, dispatch } = useVideo();
+  const navigate = useNavigate();
   const video = state.initialVideo.find((video) => video.id === videoId);
   // const navigate = useNavigate();
   const [playlistName, setPlaylistName] = useState("");
@@ -97,14 +100,16 @@ function VideoDetails() {
                   : "bg-gray-700 text-white hover:bg-gray-600"
               }`}
               onClick={() =>
-                isVideoLiked
-                  ? (dispatch({
-                      type: "REMOVE_FROM_LIKED",
-                      payload: video,
-                    }),
-                    toast.success("Removed from Liked"))
-                  : (dispatch({ type: "ADD_TO_LIKED", payload: video }),
-                    toast.success("Added to Liked"))
+                stateAuth.loggedIn
+                  ? isVideoLiked
+                    ? (dispatch({
+                        type: "REMOVE_FROM_LIKED",
+                        payload: video,
+                      }),
+                      toast.success("Removed from Liked"))
+                    : (dispatch({ type: "ADD_TO_LIKED", payload: video }),
+                      toast.success("Added to Liked"))
+                  : navigate("/login")
               }
             >
               Like
@@ -116,14 +121,16 @@ function VideoDetails() {
                   : "bg-gray-700 text-white hover:bg-gray-600"
               }`}
               onClick={() =>
-                isVideoPresentInWatchLater
-                  ? (dispatch({
-                      type: "REMOVE_FROM_WATCH_LATER",
-                      payload: video,
-                    }),
-                    toast.success("Removed from Watch Later"))
-                  : (dispatch({ type: "ADD_TO_WATCH_LATER", payload: video }),
-                    toast.success("Added to Watch Later"))
+                stateAuth.loggedIn
+                  ? isVideoPresentInWatchLater
+                    ? (dispatch({
+                        type: "REMOVE_FROM_WATCH_LATER",
+                        payload: video,
+                      }),
+                      toast.success("Removed from Watch Later"))
+                    : (dispatch({ type: "ADD_TO_WATCH_LATER", payload: video }),
+                      toast.success("Added to Watch Later"))
+                  : navigate("/login")
               }
             >
               Watch Later
@@ -136,7 +143,9 @@ function VideoDetails() {
             </Button>
             <Button
               className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
-              onClick={handleAddToPlaylist}
+              onClick={() =>
+                stateAuth.loggedIn ? handleAddToPlaylist() : navigate("/login")
+              }
             >
               <PlaylistAddIcon />
             </Button>

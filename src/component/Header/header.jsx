@@ -69,11 +69,14 @@ import React, { useState } from "react";
 import { Button } from "../index-component";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useVideo } from "../../Context/Video-Context/VideoContext";
+import { useAuth } from "../../Context/Auth-Context/auth-context";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { dispatch } = useVideo();
+  const { stateAuth, dispatchAuth } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (e) => {
@@ -85,6 +88,17 @@ const Header = () => {
     // Navigate to explore page
     navigate("/explore");
   };
+
+  function handleClick(event) {
+    if (event.target.innerHTML === "Logout") {
+      dispatchAuth({ type: "USER_LOGOUT" });
+      navigate("/login");
+      toast.success("Logged Out");
+    }
+    if (event.target.innerHTML === "Login") {
+      navigate("/login");
+    }
+  }
 
   return (
     <header className="fixed top-0 left-0 w-full bg-gray-800 text-white p-4 flex items-center justify-between z-10">
@@ -147,8 +161,11 @@ const Header = () => {
       </div>
 
       <div className="flex items-center">
-        <Button className="bg-gray-700 text-white py-2 px-4 rounded border border-transparent hover:bg-gray-600 hover:border-white">
-          Login
+        <Button
+          onClick={handleClick}
+          className="bg-gray-700 text-white py-2 px-4 rounded border border-transparent hover:bg-gray-600 hover:border-white"
+        >
+          {stateAuth.loggedIn ? "Logout" : "Login"}
         </Button>
       </div>
     </header>
