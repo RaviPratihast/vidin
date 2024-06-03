@@ -112,7 +112,7 @@ const Login = () => {
         <div className="flex justify-center mt-5 gap-2">
           <p className="text-gray-700">Don't have an account?</p>
           <span
-            className="text-blue-500 font-medium cursor-pointer"
+            className="text-gray-700 font-medium cursor-pointer"
             onClick={handleClick}
           >
             Sign up

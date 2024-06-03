@@ -13,6 +13,7 @@ import {
   VideoDetails,
   PlaylistDetail,
   Login,
+  SignUp,
 } from "./Pages/index-page";
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           {/* <Route path="/signup" element={<SignUp />} /> */}
         </Routes>
         <ToastContainer autoClose={700} />
