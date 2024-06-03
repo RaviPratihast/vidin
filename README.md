@@ -40,6 +40,7 @@ VidIn is basic video library for watching video contents.
 - It is just a demo, for better look of this video library go to the about section, have added a link for this App.
 
 ![VidIn](/public/image/vidIn.gif)
+![vidIn (1)](https://github.com/RaviPratihast/vidin/assets/75324945/3226ee55-a358-416b-bd68-89218037d949)
 
 ## Tech Stack
 
