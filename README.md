@@ -49,7 +49,7 @@ VidIn is basic video library for watching video contents.
 ## Demo
 * It is just a demo, for better look of this video library go to the about section, have added a link for this App.
 
-![kartTube](/public/image/vidIn.gif)
+![VidIn](/public/image/vidIn.gif)
 
 
 ## Tech Stack
