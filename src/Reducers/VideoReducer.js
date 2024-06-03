@@ -1,5 +1,4 @@
 function VideoReducer(state, action) {
-  // console.log(action.payload, "action.payload");
   switch (action.type) {
     case "ADD_TO_LIKED":
       if (
@@ -77,26 +76,6 @@ function VideoReducer(state, action) {
         ),
       };
 
-    // case "REMOVE_VIDEO_FROM_PLAYLIST":
-    //   const
-    // case "REMOVE_FROM_PLAYLIST":
-    //   const { playlistName, videoId } = action.payload;
-    //   const updatedPlaylists = state.playlists.map((playlist) => {
-    //     if (playlist.playlistName === playlistName) {
-    //       const updatedVideos = playlist.videos.filter(
-    //         (video) => video.id !== videoId
-    //       );
-    //       return {
-    //         ...playlist,
-    //         videos: updatedVideos,
-    //       };
-    //     }
-    //     return playlist;
-    //   });
-    //   return {
-    //     ...state,
-    //     playlists: updatedPlaylists,
-    //   };
     case "REMOVE_VIDEO_FROM_PLAYLIST":
       const { playlistId, video } = action.payload;
       const updatedPlaylists = state.playlists.map((playlist) => {
@@ -168,21 +147,9 @@ function VideoReducer(state, action) {
         ...state,
         filteredVideos: searchTerm ? filteredVideos : state.originalData,
       };
-    // case "SEARCH_VIDEO":
-    //   return {
-    //     ...state,
-    //     initialVideo: state.originalData.filter((video) =>
-    //       video.title.toLowerCase().includes(action.payload.toLowerCase())
-    //     ),
-    //   };
-    // case "SET_DEFAULT_VALUE_OF_VIDEOS":
-    //   return {
-    //     ...state,
-    //     initialVideo: state.originalData,
-    //   };
 
     default:
-      return state; // Return the current state for unrecognized actions
+      return state;
   }
 }
 

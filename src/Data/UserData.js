@@ -161,5 +161,3 @@ const videos = [
 ];
 
 export default videos;
-
-// AIzaSyDuJ2TOawbRGtYHuKAe7NAW4xoSABEOwvQ

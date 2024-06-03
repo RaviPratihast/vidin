@@ -1,5 +1,4 @@
 function authenticationReducer(stateAuth, actionAuth) {
-  // console.log(actionAuth.payload);
   switch (actionAuth.type) {
     case "USER_LOGGED_IN":
       return {
