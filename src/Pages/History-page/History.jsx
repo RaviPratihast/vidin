@@ -65,7 +65,7 @@ const History = () => {
                 Looks like you haven't watched anything yet.
               </h2>
               <Button
-                onClick={() => navigate("/explore")}
+                onClick={() => navigate("/")}
                 className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
               >
                 Watch Now

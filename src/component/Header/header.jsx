@@ -18,7 +18,7 @@ const Header = () => {
 
     dispatch({ type: "SEARCH_VIDEOS", payload: value });
 
-    navigate("/explore");
+    navigate("/");
   };
 
   function handleClick(event) {
