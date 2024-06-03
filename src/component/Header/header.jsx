@@ -68,7 +68,7 @@ const Header = () => {
           </div>
         )}
 
-        <NavLink to="/explore">
+        <NavLink to="/">
           <span className="text-2xl font-bold">vidIn</span>
         </NavLink>
         <div className="hidden lg:flex ml-11 mt-1">

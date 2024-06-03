@@ -26,7 +26,7 @@ function App() {
           Welcome to vidIn
         </h1> */}
         <Routes>
-          <Route path="/explore" element={<Explore />} />
+          <Route path="/" element={<Explore />} />
           <Route
             path="/watchLater"
             element={
