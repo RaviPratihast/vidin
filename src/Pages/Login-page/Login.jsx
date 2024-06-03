@@ -21,7 +21,7 @@ const Login = () => {
     );
     if (isUserPresent) {
       dispatchAuth({ type: "USER_LOGGED_IN", payload: { loggedIn: true } });
-      const defaultPathName = "/explore";
+      const defaultPathName = "/";
       navigate(location?.state?.from?.pathname || defaultPathName, {
         replace: true,
       });
@@ -33,7 +33,7 @@ const Login = () => {
 
   function handleGuestLogin() {
     dispatchAuth({ type: "GUEST_USER_LOGGED_IN", payload: { loggedIn: true } });
-    const defaultPathName = "/explore";
+    const defaultPathName = "/";
     navigate(location?.state?.from?.pathname || defaultPathName, {
       replace: true,
     });
