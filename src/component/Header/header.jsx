@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Menu, Search, LogOut, LogIn } from "lucide-react"; // Importing icons from Lucide
 import { Button } from "../index-component";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useVideo } from "../../Context/Video-Context/VideoContext";
@@ -21,82 +22,99 @@ const Header = () => {
     navigate("/");
   };
 
-  function handleClick(event) {
-    if (event.target.innerHTML === "Logout") {
+  const handleClick = (event) => {
+    if (stateAuth.loggedIn) {
       dispatchAuth({ type: "USER_LOGOUT" });
       navigate("/login");
       toast.success("Logged Out");
-    }
-    if (event.target.innerHTML === "Login") {
+    } else {
       navigate("/login");
     }
-  }
+  };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-gray-800 text-white p-4 flex items-center justify-between z-10">
+    <header className="fixed top-0 left-0 w-full bg-gray-800 text-white p-4 flex items-center justify-between z-10 shadow-lg">
+
       <div className="flex items-center">
         <Button
           className="mr-4 md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
+          <Menu className="w-6 h-6 text-white" />
         </Button>
 
-        {menuOpen && (
-          <div className="absolute top-16 left-0 w-full bg-gray-800 text-white p-4 md:hidden">
-            <nav>
-              <ul className="flex gap-6">
-                <NavLink to="/watchLater">WatchLater</NavLink>
-                <NavLink to="/liked">Liked</NavLink>
-                <NavLink to="/history">History</NavLink>
-                <NavLink to="/playlistPage">playlist</NavLink>
-              </ul>
-            </nav>
-          </div>
-        )}
-
-        <NavLink to="/">
-          <span className="text-2xl font-bold">vidIn</span>
+        <NavLink to="/" className="text-2xl font-bold">
+          vidIn
         </NavLink>
-        <div className="hidden lg:flex ml-11 mt-1">
+
+    
+        <nav className="hidden lg:flex ml-8">
           <ul className="flex gap-6">
-            <NavLink to="/watchLater">WatchLater</NavLink>
-            <NavLink to="/liked">Liked</NavLink>
-            <NavLink to="/history">History</NavLink>
-            <NavLink to="/playlistPage">playlist</NavLink>
+            {["WatchLater", "Liked", "History", "PlaylistPage"].map((item) => (
+              <NavLink
+                key={item}
+                to={`/${item.toLowerCase()}`}
+                className="hover:text-gray-400"
+                activeClassName="text-gray-400"
+              >
+                {item}
+              </NavLink>
+            ))}
           </ul>
+        </nav>
+      </div>
+
+     
+      {menuOpen && (
+        <div className="absolute top-16 left-0 w-full bg-gray-800 text-white p-4 md:hidden">
+          <nav>
+            <ul className="flex flex-col gap-4">
+              {["WatchLater", "Liked", "History", "PlaylistPage"].map((item) => (
+                <NavLink
+                  key={item}
+                  to={`/${item.toLowerCase()}`}
+                  className="hover:text-gray-400"
+                  activeClassName="text-gray-400"
+                >
+                  {item}
+                </NavLink>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      )}
+
+    
+      <div className="hidden md:flex items-center">
+        <div className="flex items-center bg-gray-700/50 rounded-full px-4 py-2">
+          <Search className="w-5 h-5 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search videos..."
+            className="bg-transparent border-none focus:outline-none ml-2 w-64 text-white placeholder-gray-400"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
         </div>
       </div>
 
-      <div className="hidden md:flex items-center justify-center">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={handleSearch}
-          placeholder="Search..."
-          className="p-2 rounded bg-gray-700 text-white w-96 focus:outline-none focus:ring-2 focus:ring-gray-500"
-        />
-      </div>
-
+ 
       <div className="flex items-center">
         <Button
           onClick={handleClick}
-          className="bg-gray-700 text-white py-2 px-4 rounded border border-transparent hover:bg-gray-600 hover:border-white"
+          className="bg-gray-700 text-white py-2 px-4 rounded border border-transparent hover:bg-gray-600 hover:border-white flex items-center gap-2"
         >
-          {stateAuth.loggedIn ? "Logout" : "Login"}
+          {stateAuth.loggedIn ? (
+            <>
+              <LogOut className="w-4 h-4" />
+              Logout
+            </>
+          ) : (
+            <>
+              <LogIn className="w-4 h-4" />
+              Login
+            </>
+          )}
         </Button>
       </div>
     </header>
