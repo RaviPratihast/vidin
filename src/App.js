@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Header } from "./component/index-component";
@@ -17,14 +17,14 @@ import {
 } from "./Pages/index-page";
 
 function App() {
+  const location = useLocation();
+  const isAuthRoute =
+    location.pathname === "/login" || location.pathname === "/signup";
+
   return (
-    <div className="App">
-      <Header />
-      {/* Main content will go here */}
-      <div className="p-4">
-        {/* <h1 className="text-4xl font-bold text-center mt-20">
-          Welcome to vidIn
-        </h1> */}
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      {!isAuthRoute ? <Header /> : null}
+      <main className="app-main">
         <Routes>
           <Route path="/" element={<Explore />} />
           <Route
@@ -70,10 +70,21 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/signup" element={<SignUp />} /> */}
         </Routes>
-        <ToastContainer autoClose={700} />
-      </div>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={1800}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="dark"
+          toastClassName="vidin-toast"
+          bodyClassName="vidin-toast-body"
+          progressClassName="vidin-toast-progress"
+        />
+      </main>
     </div>
   );
 }

@@ -15,51 +15,50 @@ function Playlist() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="shadow-lg h-20 sm:h-24 w-full sm:w-60 flex flex-col justify-center items-center border border-gray-700 rounded-md mb-4 sm:mb-8">
-          <h3 className="text-gray-700 text-center">
-            Playlists: {state.playlists.length}
-          </h3>
+    <div className="page-shell">
+      <div className="mx-auto w-full max-w-[1680px]">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h1 className="section-headline">Playlists</h1>
+            <p className="muted-text mt-1">{state.playlists.length} playlists</p>
+          </div>
+          {state.playlists.length > 0 ? (
+            <Button
+              onClick={handleDeleteAll}
+              className="border border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800"
+            >
+              Delete all
+            </Button>
+          ) : null}
         </div>
 
         {state.playlists.length === 0 ? (
-          <div className="flex justify-center items-center w-full px-4 sm:px-6 lg:px-8">
-            <div className="border shadow-lg h-auto sm:h-60 w-full max-w-md p-8 sm:p-20 flex flex-col justify-center items-center gap-4 sm:gap-2 rounded-md border-gray-700">
-              <h2 className="text-lg text-gray-700 text-center">
+          <div className="surface-card mx-auto flex w-full max-w-xl flex-col items-center gap-4 p-8 text-center">
+              <h2 className="text-lg text-slate-100">
                 Your don't have any playlist.
               </h2>
               <Button
                 onClick={() => navigate("/")}
-                className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
+                className="bg-blue-500 text-slate-950 hover:bg-blue-400"
               >
                 Watch Now
               </Button>
-            </div>
           </div>
         ) : (
           <div>
-            <div className="flex justify-end mb-4">
-              <Button
-                onClick={handleDeleteAll}
-                className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
-              >
-                Delete All
-              </Button>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
               {state.playlists.map((playlist) => (
                 <div
                   key={playlist.id}
-                  className="bg-white rounded overflow-hidden shadow-lg flex flex-col h-40"
+                  className="surface-card flex min-h-44 flex-col overflow-hidden"
                 >
-                  <div className="bg-gray-700 h-1/2 relative">
+                  <div className="h-24 bg-slate-800 relative">
                     <Link
                       to={`/playlistDetail/${playlist.id}`}
                       className="block h-full"
                     >
                       <div
-                        className="h-full opacity-50 bg-cover bg-center"
+                        className="h-full bg-cover bg-center opacity-40"
                         style={{
                           backgroundImage: `url(${
                             playlist.videos[0]?.thumbnail ||
@@ -69,8 +68,10 @@ function Playlist() {
                       ></div>
                     </Link>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-gray-700 text-white">
-                    <h3 className="text-base">{playlist.playlistName}</h3>
+                  <div className="flex flex-1 items-center justify-between p-4">
+                    <h3 className="text-base font-semibold text-slate-100">
+                      {playlist.playlistName}
+                    </h3>
                     <Button
                       onClick={() => {
                         dispatch({
@@ -79,7 +80,7 @@ function Playlist() {
                         });
                         toast.success("Playlist Removed");
                       }}
-                      className="text-white focus:outline-none"
+                      className="h-11 w-11 rounded-lg border border-slate-700 bg-slate-900 px-0 py-0 text-slate-100 hover:bg-slate-800"
                     >
                       <DeleteIcon />
                     </Button>

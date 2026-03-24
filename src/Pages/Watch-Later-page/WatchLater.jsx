@@ -23,31 +23,30 @@ const WatchLater = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-4">
-          <div className="shadow-lg h-20 sm:h-24 w-full sm:w-60 flex flex-col justify-center items-center border border-gray-700 rounded-md mb-4 sm:mb-8">
-            <h3 className="text-gray-700 text-center">
-              Watch Later: {state.watchLater.length}
-            </h3>
+    <div className="page-shell">
+      <div className="mx-auto w-full max-w-[1680px]">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h1 className="section-headline">Watch later</h1>
+            <p className="muted-text mt-1">{state.watchLater.length} saved videos</p>
           </div>
-          {state.watchLater.length !== 0 && (
+          {state.watchLater.length > 0 ? (
             <Button
-              onClick={() => handleDeleteAll()}
-              className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
+              onClick={handleDeleteAll}
+              className="border border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800"
             >
-              Delete All Videos
+              Delete all
             </Button>
-          )}
+          ) : null}
         </div>
 
         {state.watchLater.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {state.watchLater.map((video) => (
               <div key={video.id} className="relative">
                 <VideoCard video={video} />
                 <Button
-                  className="absolute top-2 right-2 bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600 focus:outline-none"
+                  className="absolute right-3 top-3 h-11 w-11 rounded-lg border border-slate-700 bg-slate-950/90 px-0 py-0 text-slate-100 hover:bg-slate-800"
                   onClick={() => handleDeleteVideo(video)}
                 >
                   <DeleteIcon />
@@ -56,18 +55,16 @@ const WatchLater = () => {
             ))}
           </div>
         ) : (
-          <div className="flex justify-center items-center w-full px-4 sm:px-6 lg:px-8">
-            <div className="border shadow-lg h-auto sm:h-60 w-full max-w-md p-8 sm:p-20 flex flex-col justify-center items-center gap-4 sm:gap-2 rounded-md border-gray-700">
-              <h2 className="text-lg text-gray-700 text-center">
+          <div className="surface-card mx-auto flex w-full max-w-xl flex-col items-center gap-4 p-8 text-center">
+              <h2 className="text-lg text-slate-100">
                 You haven't saved any videos for later.
               </h2>
               <Button
                 onClick={() => navigate("/")}
-                className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
+                className="bg-blue-500 text-slate-950 hover:bg-blue-400"
               >
                 Watch Now
               </Button>
-            </div>
           </div>
         )}
       </div>

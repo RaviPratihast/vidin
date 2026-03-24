@@ -5,12 +5,12 @@ const Modal = ({ isOpen, onClose, children }) => {
   return (
     <>
       {isOpen && (
-        <div className="fixed top-0 left-0 flex justify-center items-center w-full h-full bg-black bg-opacity-50 z-50">
-          <div className="bg-white shadow-md rounded-lg w-11/12 max-w-md">
-            <div className="flex justify-end   px-4 py-2 border-b border-gray-700">
+        <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-slate-950/70 px-4">
+          <div className="surface-card w-full max-w-md">
+            <div className="flex justify-end border-b border-slate-800 px-4 py-3">
               <Button
                 onClick={onClose}
-                className="text-gray-700 focus:outline-none"
+                className="h-11 w-11 rounded-lg border border-slate-700 bg-slate-900 px-0 py-0 text-slate-200 hover:bg-slate-800"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ const Modal = ({ isOpen, onClose, children }) => {
                 </svg>
               </Button>
             </div>
-            <div className="px-4 py-6 border">{children}</div>
+            <div className="px-4 py-6">{children}</div>
           </div>
         </div>
       )}

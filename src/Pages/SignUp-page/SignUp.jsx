@@ -43,52 +43,52 @@ function SignUp() {
   }
 
   return (
-    <div className="h-screen flex-1 justify-center items-center flex">
-      <div className="border w-96 h-96 bg-white shadow-xl rounded  border-gray-700">
+    <div className="page-shell flex items-center justify-center">
+      <div className="surface-card w-full max-w-md p-6">
         {!signedIn ? (
           <>
-            <h3 className="text-lg mt-10 ml-10 font-bold">Sign Up</h3>
-            <div className=" mt-10 h-24 flex flex-col gap-3 justify-center">
-              <div className=" flex justify-start items-center gap-2 border pl-3 mx-10 p-1 rounded">
+            <h3 className="mb-6 text-xl font-bold text-slate-100">Sign Up</h3>
+            <div className="flex flex-col gap-3 justify-center">
+              <div className="flex min-h-11 items-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-3 py-2">
                 <input
                   type="text"
                   placeholder="Username"
                   value={username}
-                  className="outline-none w-full text-gray-700"
+                  className="w-full bg-transparent text-slate-100 outline-none placeholder:text-slate-500"
                   onChange={(event) => handleChange(event)}
                 />
               </div>
-              <div className="flex justify-start items-center gap-2 border pl-3 mx-10 p-1 rounded">
+              <div className="flex min-h-11 items-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-3 py-2">
                 <input
                   type="password"
                   placeholder="Password"
                   value={password}
-                  className="outline-none w-full text-gray-700"
+                  className="w-full bg-transparent text-slate-100 outline-none placeholder:text-slate-500"
                   onChange={(event) => handleChange(event)}
                 />
               </div>
-              <div className="flex justify-start items-center gap-2 border pl-3 mx-10 p-1 rounded">
+              <div className="flex min-h-11 items-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-3 py-2">
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   value={confirmPassword}
-                  className="outline-none w-full text-gray-700"
+                  className="w-full bg-transparent text-slate-100 outline-none placeholder:text-slate-500"
                   onChange={(event) => handleChange(event)}
                 />
               </div>
             </div>
-            <div className="flex mt-6 mx-10 justify-end">
+            <div className="mt-6 flex justify-end">
               <Button
                 onClick={() => handleSignIn()}
-                className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
+                className="bg-blue-500 text-slate-950 hover:bg-blue-400"
               >
                 Sign Up
               </Button>
             </div>
-            <div className="flex justify-center mt-5 gap-2 mx-10">
-              <p>Already have an account?</p>
+            <div className="mt-5 flex justify-center gap-2">
+              <p className="text-slate-300">Already have an account?</p>
               <span
-                className="text-gray-700 font-medium cursor-pointer"
+                className="cursor-pointer font-medium text-blue-300 hover:text-blue-200"
                 onClick={() => handleLogin()}
               >
                 Log In
@@ -101,11 +101,11 @@ function SignUp() {
           
             </div>
             <div className="flex flex-col gap-3 justify-center items-center w-full mt-5">
-              <h1 className="font-semibold text-lg">Thanks for Signing Up!</h1>
+              <h1 className="text-lg font-semibold text-slate-100">Thanks for Signing Up!</h1>
               <div>
                 <Button
                   onClick={() => handleLogin()}
-                  className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
+                  className="bg-blue-500 text-slate-950 hover:bg-blue-400"
                 >
                   Log In
                 </Button>

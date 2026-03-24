@@ -41,20 +41,29 @@ const Login = () => {
   }
 
   return (
-    <div className="flex h-screen justify-center items-center">
-      <div className="border w-full max-w-md bg-white shadow-xl border-gray-700 rounded p-6 mx-4">
-        <h3 className="text-2xl font-bold text-gray-700 text-center mb-6">
+    <div className="flex min-h-screen items-center justify-center px-4 py-8">
+      <div className="surface-card w-full max-w-md p-6 sm:p-8">
+        <div className="mb-8">
+          <p className="text-xs uppercase tracking-[0.14em] text-slate-400">vidIn</p>
+          <h3 className="mt-2 text-2xl font-bold text-slate-100">
+            Welcome back
+          </h3>
+          <p className="mt-1 text-sm text-slate-400">
+            Sign in to access your playlists and watch history.
+          </p>
+        </div>
+        <h3 className="sr-only">
           Log In
         </h3>
         <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2 border px-3 py-2 rounded">
+          <div className="flex min-h-11 items-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-3 py-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 text-gray-400"
+              className="h-6 w-6 text-slate-500"
             >
               <path
                 strokeLinecap="round"
@@ -65,19 +74,19 @@ const Login = () => {
             <input
               type="text"
               placeholder="Username"
-              className="outline-none w-full text-gray-700"
+              className="w-full bg-transparent text-slate-100 outline-none placeholder:text-slate-500"
               value={user}
               onChange={({ target }) => setUser(target.value)}
             />
           </div>
-          <div className="flex items-center gap-2 border px-3 py-2 rounded">
+          <div className="flex min-h-11 items-center gap-2 rounded-xl border border-slate-700 bg-slate-900 px-3 py-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-6 h-6 text-gray-400"
+              className="h-6 w-6 text-slate-500"
             >
               <path
                 strokeLinecap="round"
@@ -88,31 +97,31 @@ const Login = () => {
             <input
               type="password"
               placeholder="Password"
-              className="outline-none w-full text-gray-700"
+              className="w-full bg-transparent text-slate-100 outline-none placeholder:text-slate-500"
               value={password}
               onChange={({ target }) => setPassword(target.value)}
             />
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row justify-between mt-6 gap-4">
+        <div className="mt-6 flex flex-col gap-3">
           <Button
             onClick={handleLogin}
-            className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
+            className="w-full bg-blue-500 text-slate-950 hover:bg-blue-400"
           >
             Log In
           </Button>
           <Button
             onClick={handleGuestLogin}
-            className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"
+            className="w-full border border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800"
           >
             Guest Login
           </Button>
         </div>
 
-        <div className="flex justify-center mt-5 gap-2">
-          <p className="text-gray-700">Don't have an account?</p>
+        <div className="mt-6 flex justify-center gap-2">
+          <p className="text-slate-300">Don't have an account?</p>
           <span
-            className="text-gray-700 font-medium cursor-pointer"
+            className="cursor-pointer font-medium text-blue-300 hover:text-blue-200"
             onClick={handleClick}
           >
             Sign up

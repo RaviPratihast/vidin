@@ -19,11 +19,10 @@ function VideoDetails() {
   const video = state.initialVideo.find((video) => video.id === videoId);
 
   const [playlistName, setPlaylistName] = useState("");
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!video) {
-    return <div>Video not found</div>;
+    return <div className="page-shell">Video not found.</div>;
   }
 
   function createSinglePlaylist(name, id) {
@@ -81,21 +80,21 @@ function VideoDetails() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-full max-w-screen-lg mx-auto mt-20 px-4 sm:px-6 lg:px-8">
-      <div className="w-full mt-10">
+    <div className="page-shell">
+      <div className="mx-auto w-full max-w-5xl">
         <div className="aspect-w-16 aspect-h-9">
           <VideoLibrary video={video} />
         </div>
-        <div className="flex flex-col sm:flex-row justify-between items-center mt-4">
-          <div className="p-2">
-            <h2 className="text-xl font-semibold">{video.title}</h2>
+        <div className="mt-4 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
+          <div className="px-1">
+            <h2 className="text-xl font-semibold text-slate-100">{video.title}</h2>
           </div>
-          <div className="flex flex-wrap space-x-2 mt-2 sm:mt-0">
+          <div className="flex flex-wrap gap-2">
             <Button
-              className={`px-4 py-2 rounded focus:outline-none ${
+              className={`${
                 isVideoLiked
-                  ? "bg-white text-gray-700 border-2 border-gray-700"
-                  : "bg-gray-700 text-white hover:bg-gray-600"
+                  ? "border border-blue-300 bg-blue-500/20 text-blue-100"
+                  : "border border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800"
               }`}
               onClick={() =>
                 stateAuth.loggedIn
@@ -113,10 +112,10 @@ function VideoDetails() {
               Like
             </Button>
             <Button
-              className={`px-4 py-2 rounded focus:outline-none ${
+              className={`${
                 isVideoPresentInWatchLater
-                  ? "bg-white text-gray-700 border-2 border-gray-700"
-                  : "bg-gray-700 text-white hover:bg-gray-600"
+                  ? "border border-blue-300 bg-blue-500/20 text-blue-100"
+                  : "border border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800"
               }`}
               onClick={() =>
                 stateAuth.loggedIn
@@ -134,13 +133,13 @@ function VideoDetails() {
               Watch Later
             </Button>
             <Button
-              className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
+              className="border border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800"
               onClick={handleShare}
             >
               <ShareIcon />
             </Button>
             <Button
-              className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
+              className="border border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800"
               onClick={() =>
                 stateAuth.loggedIn ? handleAddToPlaylist() : navigate("/login")
               }
@@ -149,9 +148,9 @@ function VideoDetails() {
             </Button>
           </div>
         </div>
-        <div className="flex flex-col text-gray-700 mt-4">
-          <div className="flex flex-col justify-between w-full">
-            <div className="h-auto w-full p-2 mt-4">
+        <div className="mt-4 flex flex-col text-slate-300">
+          <div className="flex w-full flex-col justify-between">
+            <div className="surface-card h-auto w-full p-4">
               <p>{video.description}</p>
             </div>
           </div>
@@ -161,18 +160,18 @@ function VideoDetails() {
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         {state.playlists.length > 0 && (
           <>
-            <h2 className="text-gray-700 mb-2">Add to Playlist</h2>
-            <div className=" flex  flex-col w-68 h-60  border border-gray-700 rounded overflow-y-auto scrollbar scrollbar-thumb-blue-500 scrollbar-track-gray-200 scrollbar-thin">
+            <h2 className="mb-2 text-slate-100">Add to Playlist</h2>
+            <div className="flex h-60 flex-col overflow-y-auto rounded-lg border border-slate-700 bg-slate-900 p-2">
               {state.playlists.map((playlist) => {
                 const isVideoPresent = playlist.videos.some(
                   (video) => video.id === videoId
                 );
                 return (
                   <div key={playlist.id}>
-                    <label className="flex gap-1 justify-start items-center ml-2 h-6">
+                    <label className="ml-2 flex h-8 items-center justify-start gap-2 text-slate-200">
                       <input
                         type="checkbox"
-                        className="cursor-pointer"
+                        className="h-4 w-4 cursor-pointer accent-blue-500"
                         checked={isVideoPresent}
                         onChange={(event) => {
                           checkboxHandler(event, playlist);
@@ -189,16 +188,16 @@ function VideoDetails() {
         
 
         <div className="flex flex-col">
-          <label className="text-gray-700 mb-2">Create Playlist</label>
+          <label className="mb-2 text-slate-200">Create Playlist</label>
           <input
             type="text"
-            className="mb-4 p-2 border border-gray-700 rounded"
+            className="mb-4 rounded-lg border border-slate-700 bg-slate-900 p-3 text-slate-100 outline-none placeholder:text-slate-500 focus:border-blue-400"
             placeholder="Enter playlist name"
             value={playlistName}
             onChange={(event) => setPlaylistName(event.target.value)}
           />
           <Button
-            className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
+            className="bg-blue-500 text-slate-950 hover:bg-blue-400"
             onClick={() => nameForSinglePlaylistCreate()}
           >
             Create
